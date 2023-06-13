@@ -66,6 +66,7 @@ function App() {
             });
     };
 
+
     const handleUpdateAvatar = (data) => {
         api.userAvatar(data)
             .then((updatedUser) => {

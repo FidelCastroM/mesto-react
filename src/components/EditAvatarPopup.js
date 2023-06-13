@@ -26,7 +26,7 @@ function EditAvatarPopup({
             onSubmit={handleSubmit}
             buttonTitle="Сохранить"
         >
-            <input ref={avatarRef} className="popup__input popup__input_one" type="url" name="avatar" id="avatar"
+            <input ref={avatarRef} className="popup__input popup__input_one" type="url" name="avatar" id="avatar-input"
                 placeholder="Ссылка на аватарку" required />
             <span className="avatar-error popup__input-error"></span>
         </PopupWithForm>
