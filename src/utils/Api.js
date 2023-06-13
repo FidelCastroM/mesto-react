@@ -1,4 +1,4 @@
-export class Api {
+class Api {
     constructor({ url, headers }) {
         this._url = url;
         this._headers = headers;
@@ -8,10 +8,18 @@ export class Api {
         return this._request(`${this._url}/users/me`, "GET");
     }
 
-    userInfo({ name, about }) {
-        return this._request(`${this._url}/users/me`, "PATCH", { name: name, about: about });
+    setUserInfo(data) {
+        return fetch(`${this._url}/users/me`, {
+            method: "PATCH",
+            headers: this._headers,
+            body: JSON.stringify({
+                name: data.name,
+                about: data.about
+            }),
+        })
+            .then(this._checkResponse);
     }
-
+    
     getInitialCards() {//добавление карточек вместо массива
         return this._request(`${this._url}/cards`, "GET");
     }
@@ -34,6 +42,15 @@ export class Api {
     deleteLike(cardId) {
         return this._request(`${this._url}/cards/${cardId}/likes`, "DELETE")
     };
+
+    changeLike(cardId, isLiked) {
+        const method = isLiked ? 'PUT' : 'DELETE';
+        return fetch(`${this._url}/cards/likes/${cardId}`, {
+            method: method,
+            headers: this._headers,
+        })
+            .then(this._checkResponse);
+    }
 
     _request(url, method, body) {
         return fetch(url, {

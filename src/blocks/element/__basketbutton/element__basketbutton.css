@@ -1,9 +1,0 @@
-.element__basketbutton {
-    cursor: pointer;
-    top: 20px;
-    right: 20px;
-    position: absolute;
-    border: none;
-    background: none;
-    z-index: 1;
-}
