@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import PopupWithForm from "./PopupWithForm";
 
 function AddPlacePopup({
@@ -8,6 +8,15 @@ function AddPlacePopup({
 }) {
     const [name, setName] = useState('');
     const [link, setLink] = useState('');
+    const [isOpened, setIsOpened] = useState(false);
+
+    useEffect(() => {
+        setIsOpened(isOpen);
+        if (!isOpen) {
+            setName('');
+            setLink('');
+        }
+    }, [isOpen]);
 
     function handleNameChange(e) {
         setName(e.target.value);
@@ -25,13 +34,18 @@ function AddPlacePopup({
         });
     }
 
+    function handleClose() {
+        setIsOpened(false);
+        onClose();
+    }
+    
     return (
         <PopupWithForm
             name="add"
             title="Новое место"
             buttonTitle="Создать"
-            isOpen={isOpen}
-            onClose={onClose}
+            isOpen={isOpened}
+            onClose={handleClose}
             onSubmit={handleSubmit}
         >
             <input 
@@ -48,14 +62,14 @@ function AddPlacePopup({
             <span className="denomination-error popup__input-error"></span>
 
             <input 
-            value={link}
-            onChange={handleLinkChange}
-            className="popup__input popup__input_two"
-            type="url"
-            name="link"
-            id="link"
-            placeholder="Ссылка на картинку"
-            required />
+                value={link}
+                onChange={handleLinkChange}
+                className="popup__input popup__input_two"
+                type="url"
+                name="link"
+                id="link"
+                placeholder="Ссылка на картинку"
+                required />
             
             <span className="link-error popup__input-error"></span>
         </PopupWithForm>
