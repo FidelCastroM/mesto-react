@@ -33,6 +33,7 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
                     </div>
                 </div>
             </li>
+
     );
 }
 

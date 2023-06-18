@@ -35,7 +35,7 @@ function EditProfilePopup({
             buttonTitle="Сохранить"
             isOpen={isOpen}
             onClose={onClose}
-            onSumbit={handleSubmit}
+            onSubmit={handleSubmit}
         >
             <input value={name} onChange={(e) => setName(e.target.value)} className="popup__input popup__input_one" type="text" name="name" id="name"
                 placeholder="Имя" required minLength="2" maxLength="40" />
